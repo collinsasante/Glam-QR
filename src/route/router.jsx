@@ -4,61 +4,100 @@ import Home from "../pages/home";
 import Analytics from "../pages/analytics";
 import ProductsForm from "../pages/products-form";
 import ProductTable from "../pages/product-table";
-import InventoryPage from "../pages/inventorypage"; // Make sure you create this page
+import InventoryPage from "../pages/inventorypage";
+import StockMovement from "../pages/StockMovement";
 
 // Authentication related imports
 import LoginCover from "../pages/login-cover";
 import LoginMinimal from "../pages/login-minimal";
 import LoginCreative from "../pages/login-creative";
-import StockMovement from "../pages/StockMovement";
+import RegisterForm from "../pages/register-cover"; // Add RegisterForm here
+import LoginForm from "../pages/login-cover"; // Add LoginForm here
+
+// PrivateRoute Component
+import PrivateRoute from "../components/PrivateRoute";
+import ResetForm from "../components/authentication/ResetForm";
+
+// Simulate user authentication (replace with actual logic)
+const isAuthenticated = true; // Replace this with your actual authentication logic
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     children: [
+      { path: "/", element: <Home /> },
       {
-        path: "/",
-        element: <Home />,
+        path: "dashboards/analytics",
+        element: (
+          <PrivateRoute
+            element={<Analytics />}
+            isAuthenticated={isAuthenticated}
+          />
+        ),
       },
       {
-        path: "/dashboards/analytics",
-        element: <Analytics />,
+        path: "products/form",
+        element: (
+          <PrivateRoute
+            element={<ProductsForm />}
+            isAuthenticated={isAuthenticated}
+          />
+        ),
       },
       {
-        path: "/products/form",
-        element: <ProductsForm />,
+        path: "product/table",
+        element: (
+          <PrivateRoute
+            element={<ProductTable />}
+            isAuthenticated={isAuthenticated}
+          />
+        ),
       },
       {
-        path: "/product/table",
-        element: <ProductTable />,
+        path: "inventory/page",
+        element: (
+          <PrivateRoute
+            element={<InventoryPage />}
+            isAuthenticated={isAuthenticated}
+          />
+        ),
       },
-      // Add the InventoryPage route here
       {
-        path: "/inventory/page",
-        element: <InventoryPage />,
-      },
-      {
-        path: "/Stock/Movement",
-        element: <StockMovement />,
+        path: "stock/movement",
+        element: (
+          <PrivateRoute
+            element={<StockMovement />}
+            isAuthenticated={isAuthenticated}
+          />
+        ),
       },
     ],
   },
   {
-    path: "/authentication/login",
-    element: <LoginCover />,
+    path: "/authentication",
     children: [
+      { path: "login", element: <LoginCover /> },
+      { path: "register/cover", element: <RegisterForm /> },
+      { path: "reset/cover", element: <ResetForm /> },
+      { path: "/authentication/login/cover", element: <LoginCover /> },
+
+      // Updated login and register routes
       {
-        path: "cover", // relative path
-        element: <LoginCover />,
+        path: "login-form",
+        element: <LoginForm registerPath="/authentication/register-form" />,
+      }, // For login
+      {
+        path: "register-form",
+        element: <RegisterForm registerPath="/authentication/login-form" />,
+      }, // For registration
+      {
+        path: "reset-form",
+        element: <ResetForm resetPath="/authentication/ResetForm" />,
       },
       {
-        path: "minimal",
-        element: <LoginMinimal />,
-      },
-      {
-        path: "creative",
-        element: <LoginCreative />,
+        path: "/authentication/register/cover",
+        element: <RegisterForm registerPath="/authentication/login-form" />,
       },
     ],
   },

@@ -46,37 +46,9 @@ export const menuList = [
       },
     ],
   },
-  {
-    id: 3,
-    name: "authentication",
-    path: "#",
-    icon: "feather-power",
-    dropdownMenu: [
-      {
-        id: 1,
-        name: "login",
-        path: "#",
-        subdropdownMenu: [
-          {
-            id: 1,
-            name: "Cover",
-            path: "/authentication/login/cover",
-          },
-          {
-            id: 2,
-            name: "Minimal",
-            path: "/authentication/login/minimal",
-          },
-          {
-            id: 3,
-            name: "Creative",
-            path: "/authentication/login/creative",
-          },
-        ],
-      },
-      // Add other dropdown menus here
-    ],
-  },
+
+  // Add other dropdown menus here
+
   {
     id: 4,
     name: "help",

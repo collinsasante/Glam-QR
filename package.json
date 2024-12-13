@@ -23,6 +23,7 @@
     "emoji-picker-react": "^4.12.0",
     "feather-icons": "^4.29.2",
     "feather-icons-react": "^0.7.0",
+    "firebase": "^11.1.0",
     "npm-install-global": "^1.0.0",
     "papaparse": "^5.4.1",
     "perfect-scrollbar": "^1.5.5",
